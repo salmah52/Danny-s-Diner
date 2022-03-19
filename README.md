@@ -26,6 +26,8 @@ Danny has shared with you 3 key datasets for this case study:
 sales
 menu
 members
+
+
 You can inspect the entity relationship diagram and example data below.
 
 
@@ -62,3 +64,20 @@ What is the total items and amount spent for each member before they became a me
 If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 
 In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+
+
+### CASE STUDY SOLUTION
+
+##### 1. What is the total amount each customer spent at the restaurant?
+
+```sql
+select 
+  sales.customer_id,
+  sum(menu.price)
+from dannys_diner.sales 
+  join dannys_diner.menu 
+    on sales.product_id= menu.product_id
+group by customer_id
+order by customer_id;
+```
+![image](https://user-images.githubusercontent.com/89623051/143566320-ca50da0a-59d7-4b41-b436-90efb64c9f6d.png)
